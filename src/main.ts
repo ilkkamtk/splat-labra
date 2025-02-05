@@ -25,31 +25,29 @@ const createScene = () => {
   const scene = new Scene(engine);
   const camera = new ArcRotateCamera(
     'camera1',
-    Math.PI / 2,
-    Math.PI / 4,
-    10,
-    new Vector3(-2, 2, 2),
+    -Math.PI / 2,
+    Math.PI * 0.5,
+    3,
+    new Vector3(0, 0, 0),
     scene,
   );
   camera.attachControl(canvas, false);
   const light = new HemisphericLight('light1', new Vector3(1, 1, 1), scene);
   console.log(light);
-  const sphere = MeshBuilder.CreateSphere(
-    'sphere1',
-    { segments: 16, diameter: 2, sideOrientation: Mesh.FRONTSIDE },
-    scene,
-  );
-  sphere.position = new Vector3(2, 1, 0);
-  const ground = MeshBuilder.CreateGround(
-    'ground1',
-    { width: 6, height: 6, subdivisions: 2, updatable: false },
-    scene,
-  );
-  console.log(ground);
-  SceneLoader.ImportMeshAsync('splat', './', 'clstesti.splat', scene).then(
+
+  SceneLoader.ImportMeshAsync('splat', './', 'mario.splat', scene).then(
     (result) => {
       const splat = result.meshes[0];
-      splat.position = new Vector3(0, 0, 0);
+      splat.position = new Vector3(-0.25, -0.14, 0);
+      splat.rotation = new Vector3(0, -Math.PI / 3, 0);
+      splat.scaling = new Vector3(0.6, 0.6, 0.6);
+    },
+  );
+  SceneLoader.ImportMeshAsync('mesh', './', 'throne.glb', scene).then(
+    (result) => {
+      const throne = result.meshes[0];
+      throne.position = new Vector3(0, 0, 0);
+      throne.scaling = new Vector3(3, 3, 3);
     },
   );
   return scene;
