@@ -2,8 +2,6 @@ import {
   ArcRotateCamera,
   Engine,
   HemisphericLight,
-  Mesh,
-  MeshBuilder,
   Scene,
   SceneLoader,
   Vector3,
