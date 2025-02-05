@@ -1,7 +1,6 @@
 import {
   ArcRotateCamera,
   Engine,
-  FreeCamera,
   HemisphericLight,
   Mesh,
   MeshBuilder,
@@ -34,6 +33,7 @@ const createScene = () => {
   );
   camera.attachControl(canvas, false);
   const light = new HemisphericLight('light1', new Vector3(1, 1, 1), scene);
+  console.log(light);
   const sphere = MeshBuilder.CreateSphere(
     'sphere1',
     { segments: 16, diameter: 2, sideOrientation: Mesh.FRONTSIDE },
@@ -45,7 +45,7 @@ const createScene = () => {
     { width: 6, height: 6, subdivisions: 2, updatable: false },
     scene,
   );
-
+  console.log(ground);
   SceneLoader.ImportMeshAsync('splat', './', 'clstesti.splat', scene).then(
     (result) => {
       const splat = result.meshes[0];
